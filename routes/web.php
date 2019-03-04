@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', ['uses' => 'Controller@fazerLogin']);
+Route::post('/', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
+Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
+
+Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);

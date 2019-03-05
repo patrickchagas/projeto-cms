@@ -14,7 +14,9 @@ class User extends Authenticatable
     use Notifiable;
 
     public $timestamps = true;
+
     protected $table = 'tb_users';
+    
     protected $fillable = [
         'nameuser',
         'birth',

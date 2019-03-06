@@ -27,7 +27,11 @@ Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
 // Routes AUTH Laravel
 Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
 
+Route::get('suporte/routes', 'HomeController@suporte')->middleware('suporte');
+
 Route::get('criador/routes', 'HomeController@criador')->middleware('criador');
+
+Route::get('cliente/routes', 'HomeController@cliente')->middleware('cliente');
 
 Auth::routes();
 

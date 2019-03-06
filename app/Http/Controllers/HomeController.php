@@ -29,6 +29,12 @@ class HomeController extends Controller
 
             break;
 
+            case 'Suporte':
+                
+                return view('suporte.index');
+
+            break;
+
             case 'Criador':
 
                 return view('criador.index');

@@ -7,7 +7,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Plataforma - Dashboard Admin</title>
+    <title>Plataforma - Dashboard Suporte</title>
     <link rel="apple-touch-icon" sizes="60x60" href="../../app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="../../app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="../../app-assets/images/ico/apple-icon-120.png">
@@ -195,15 +195,10 @@
               <span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Dashboard</span></a>
           </li>
           
-          <li class=" nav-item">
-            <a href="#">
-              <i class="icon-users"></i>
-                <span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Usuários</span>
-            </a>
+          {{-- <li class=" nav-item"><a href="form-layout-basic.html"><i class="icon-paper"></i><span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Basic Forms</span></a>
           </li>
-
-          {{-- <li class=" nav-item"><a href="table-basic.html"><i class="icon-table2"></i><span data-i18n="nav.bootstrap_tables.table_basic" class="menu-title">Basic Tables</span></a>
-          </li>  --}}
+          <li class=" nav-item"><a href="table-basic.html"><i class="icon-table2"></i><span data-i18n="nav.bootstrap_tables.table_basic" class="menu-title">Basic Tables</span></a>
+          </li> --}}
 
           
         </ul>

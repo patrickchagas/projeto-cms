@@ -22,8 +22,6 @@ class HomeController extends Controller
     {   
         $sessao = auth()->user()->nivel;
 
-        // dd($sessao);
-        
         switch ($sessao) {
             case 'Administrador':
                 

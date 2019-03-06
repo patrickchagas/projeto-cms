@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading btn-primary">WELCOME TO CRIADOR ROUTE</div>
+            <h3 style="text-align:center;">WELCOME TO CRIADOR ROUTE</h3>
         </div>
     </div>
 </div>

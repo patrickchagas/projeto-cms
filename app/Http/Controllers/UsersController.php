@@ -11,126 +11,121 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
+use App\Services\UserService;
 
 
 class UsersController extends Controller
 {
   
     protected $repository;
-    protected $validator;
+    protected $service;
 
 
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct(UserRepository $repository, UserService $service)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->service  = $service;
     }
 
     public function index()
     {
-       
-        return view('user.index');
+
+        echo 'chegou aqui';
 
     }
 
+    //Listar de usuários
+    public function users()
+    {   
+
+        $users = $this->repository->all();
+
+        return view('admin.users', [
+            "users"=>$users,
+        ]);
+    }
+
+    public function usersCreate()
+    {
+
+        return view('admin.users-create');
+
+    }
+
+    //Cadastrar um usuário
     public function store(UserCreateRequest $request)
     {
-        try {
+        
+        //Criar um novo usuário atráves do Service
+        $request = $this->service->store($request->all());
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+        //Verificar se houve sucesso ou falha
+        $usuario = $request['success'] ? $request['data'] : null;
 
-            $user = $this->repository->create($request->all());
 
-            $response = [
-                'message' => 'User created.',
-                'data'    => $user->toArray(),
-            ];
+        //Passar mensagens para view
+        session()->flash('success', [
+            'success' => $request['success'],
+            'messages' => $request['messages']
+        ]);
+        
+        //transferir o resultado para view
+        return redirect()->route('admin.users');
 
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
     }
 
     public function show($id)
     {
-        $user = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $user,
-            ]);
-        }
-
-        return view('users.show', compact('user'));
+        
     }
 
+    //Rota de editar usuário
     public function edit($id)
     {
+        
         $user = $this->repository->find($id);
 
-        return view('users.edit', compact('user'));
+        return view('admin.users-update', [
+            'user' => $user
+        ]);
+        
     }
 
 
     public function update(UserUpdateRequest $request, $id)
     {
-        try {
+        //Atualizar dados do usuário atráves do service
+        $request = $this->service->update($request->all(), $id);
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        //Verificar se houve sucesso ou falha
+        $usuario = $request['success'] ? $request['data'] : null;
 
-            $user = $this->repository->update($request->all(), $id);
+        //Passar mensagens para view
+        session()->flash('success', [
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
 
-            $response = [
-                'message' => 'User updated.',
-                'data'    => $user->toArray(),
-            ];
+        //transferir o resultado para view
+        return redirect()->route('admin.users');
 
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
     }
     
+    //Deletar um usuário
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+       
+        //Remover um usuário por id
+        $request = $this->service->destroy($id);
 
-        if (request()->wantsJson()) {
+        //Passar mensagens para view
+        session()->flash('success', [
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
 
-            return response()->json([
-                'message' => 'User deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
+        //transferir o resultado para view
+        return redirect()->route('admin.users');
 
-        return redirect()->back()->with('message', 'User deleted.');
     }
 }

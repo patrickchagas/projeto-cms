@@ -28,45 +28,44 @@ class DashboardController extends Controller
   }
 
   // method login auth
-  public function auth(Request $request)
-  {
-      $data = [
-        'login' => $request->get('login'),
-        'password' => $request->get('password')
-      ];
+  // public function auth(Request $request)
+  // {
+  //     $data = [
+  //       'login' => $request->get('login'),
+  //       'password' => $request->get('password')
+  //     ];
 
+  //     try {
 
-      try {
+  //       if(env('PASSWORD_HASH'))
+  //       {
 
-        if(env('PASSWORD_HASH'))
-        {
+  //         \Auth::attempt($data, false);
 
-          \Auth::attempt($data, false);
-
-        } else {
-          //Buscar usuário
-          $user = $this->repository->findWhere(['login' => $request->get('login')])->first();
+  //       } else {
+  //         //Buscar usuário
+  //         $user = $this->repository->findWhere(['login' => $request->get('login')])->first();
                   
         
-          if(!$user) // não encontrou o usuário
+  //         if(!$user) // não encontrou o usuário
 
-              throw new Exception("O Usuário informado é inválido ou não existe.");
+  //             throw new Exception("O Usuário informado é inválido ou não existe.");
           
-            if($user->password != $request->get('password'))
-              throw new Exception("A senha informada é inválida.");          
+  //           if($user->password != $request->get('password'))
+  //             throw new Exception("A senha informada é inválida.");          
 
-            Auth::login($user);
+  //           Auth::login($user);
 
-        }
+  //       }
 
-        return redirect()->route('user.dashboard');
+  //       return redirect()->route('user.dashboard');
 
-      } catch (Exception $e) {
+  //     } catch (Exception $e) {
 
-        return $e->getMessage();
+  //       return $e->getMessage();
 
-      }
+  //     }
 
-  }
+  // }
 
 }

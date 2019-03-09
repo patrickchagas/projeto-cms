@@ -19,13 +19,13 @@ class CreateUsersTable extends Migration
 			$table->string('email', 150)->unique();
 			$table->string('password', 254)->nullable();
 			$table->string('status')->default('active')->nullable();
-			$table->string('nivel')->default('Cliente')->nullable();
+			$table->string('nivel');
             $table->string('permission')->default('app.user')->nullable();
 			
 			
             $table->rememberToken();
             $table->timestampsTz();
-            $table->softDeletes();
+            // $table->softDeletes();
 		});
 	}
 

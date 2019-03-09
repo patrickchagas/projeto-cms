@@ -15,19 +15,7 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {   
-        User::create([
-            'cpf' => '11122233366', 
-            'nameuser' => 'Patrick Chagas',
-            'services' => 'Facebook, Instagram', 
-            'phone' => '359999999', 
-            'birth' => '1996-10-06', 
-            'gender' => 'M', 
-            'email' => 'patrick@sistema.com.br',
-            'login' => 'patrick', 
-            'nivel' => 'Cliente',
-            'password' => env('PASSWORD_HASH') ? bcrypt('123') : '123', 
-        ]);
-
+    
         User::create([
             'cpf' => '11122233362', 
             'nameuser' => 'Administrador',
@@ -38,7 +26,20 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@sistema.com.br',
             'login' => 'admin', 
             'nivel' => 'Administrador',
-            'password' => env('PASSWORD_HASH') ? bcrypt('123') : '123', 
+            'password' => env('PASSWORD_HASH') ? bcrypt('12345678') : '12345678', 
+        ]);
+
+        User::create([
+            'cpf' => '11122233361', 
+            'nameuser' => 'Suporte',
+            'services' => '', 
+            'phone' => '359999999', 
+            'birth' => '1996-10-06', 
+            'gender' => 'M', 
+            'email' => 'suporte@sistema.com.br',
+            'login' => 'suporte', 
+            'nivel' => 'Suporte',
+            'password' => env('PASSWORD_HASH') ? bcrypt('12345678') : '12345678', 
         ]);
 
         User::create([
@@ -51,7 +52,20 @@ class DatabaseSeeder extends Seeder
             'email' => 'criador@sistema.com.br',
             'login' => 'criador', 
             'nivel' => 'Criador',
-            'password' => env('PASSWORD_HASH') ? bcrypt('123') : '123', 
+            'password' => env('PASSWORD_HASH') ? bcrypt('12345678') : '12345678', 
+        ]);
+
+        User::create([
+            'cpf' => '11122233364', 
+            'nameuser' => 'Cliente',
+            'services' => '', 
+            'phone' => '359999999', 
+            'birth' => '1996-10-06', 
+            'gender' => 'M', 
+            'email' => 'cliente@sistema.com.br',
+            'login' => 'cliente', 
+            'nivel' => 'cliente',
+            'password' => env('PASSWORD_HASH') ? bcrypt('12345678') : '12345678', 
         ]);
         // $this->call(UsersTableSeeder::class);
     }

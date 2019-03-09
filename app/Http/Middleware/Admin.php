@@ -22,7 +22,7 @@ class Admin
             return $next($request);
         }
 
-        return redirect('login')->with('error','You have not admin access');
+        return redirect('/')->with('error','Você não tem acesso de administrador');
     }
 
 }

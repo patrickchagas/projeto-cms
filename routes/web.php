@@ -16,16 +16,23 @@
 // });
 
 
-
+//Tela de login 
 Route::get('/', ['uses' => 'Controller@fazerLogin']);
-Route::post('/', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
-Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
+
 
 Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
 
 
-// Routes AUTH Laravel
-Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
+// Routes de ADMIN
+
+//Lista de usuários
+Route::get('/admin/usuarios', ['as' => 'admin.users', 'uses' => 'UsersController@users'])->middleware('admin');
+
+//Cadastrar Usuário - tela
+Route::get('/admin/usuarios/cadastar', ['as' => 'admin.users-create', 'uses' => 'UsersController@usersCreate'])->middleware('admin');
+
+
+
 
 Route::get('suporte/routes', 'HomeController@suporte')->middleware('suporte');
 
@@ -36,3 +43,7 @@ Route::get('cliente/routes', 'HomeController@cliente')->middleware('cliente');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//Usando rota Resources para fazer as funções do CRUD de usuário
+Route::resource('/admin/usuario', 'UsersController')->middleware('admin');

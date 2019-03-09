@@ -79,7 +79,7 @@
                         <fieldset class="form-group position-relative has-icon-left">
 
 
-                            <input id="password" type="password" class="form-control form-control-lg input-lg{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input id="password" type="text" class="form-control form-control-lg input-lg{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
